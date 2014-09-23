@@ -1,4 +1,4 @@
 flatfolio
 =========
 
-Flat file art e-portfolio in Laravel.
+Flat file art e-portfolio.
