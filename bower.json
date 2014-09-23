@@ -1,0 +1,21 @@
+{
+  "name": "flatfolio",
+  "version": "0.1.0",
+  "homepage": "https://github.com/SaulJohnson/flatfolio",
+  "authors": [
+    "Saul Johnson <saul.a.johnson@gmail.com>"
+  ],
+  "description": "Flat file art e-portfolio.",
+  "keywords": [
+    "flat",
+    "file",
+    "portfolio",
+    "art"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "lemonade": "*",
+    "entypo": "*",
+    "slice": "dope/slice"
+  }
+}

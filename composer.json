@@ -1,0 +1,15 @@
+{
+    "name": "SaulJohnson/flatfolio",
+    "description": "Flat file art e-portfolio.",
+    "minimum-stability": "beta",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Saul Johnson",
+            "email": "saul.a.johnson@gmail.com"
+        }
+    ],
+    "require": {
+        "gabordemooij/redbean": "*"
+    }
+}
