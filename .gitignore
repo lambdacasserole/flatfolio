@@ -2,5 +2,6 @@
 /vendor
 /composer.phar
 /node_modules
-/bower_components
-/css/*.css
+/public/bower_components
+/public/css/*.css
+/public/cache
