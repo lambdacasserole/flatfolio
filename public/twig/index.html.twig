@@ -16,19 +16,19 @@
             </div>
         </div>
     </div>
-    {% for gallery, i in galleries %}
-        {% if i % 3 == 0 %}<div class="frame">{% endif %}
-        <div class="bit-3 gallery-tile">
-            <div class="gallery-tile-caption">Lorem Ipsum</div>
-            <div class="gallery-tile-actions">&#59168; &#59146;</div>
-        </div>
-        {% if loop.last %}
-            {% set modulo = 2 - (galleries|length % 3) %}
-            {% for j in 0..modulo %}
-                <div class="bit-3 gallery-tile"></div>
+    {% for row in galleries|batch(3, null) %}
+        <div class="frame">
+            {% for gallery in row %}
+                {% if gallery is null %}
+                    <div class="bit-3 gallery-tile"></div>
+                {% else %}
+                    <div class="bit-3 gallery-tile">
+                        <div class="gallery-tile-caption">{{ gallery.name }}</div>
+                        <div class="gallery-tile-actions">&#59168; &#59146;</div>
+                    </div>
+                {% endif %}
             {% endfor %}
-        {% endif %}
-        {% if i % 3 == 2 or loop.last %}</div>{% endif %}
+        </div>
     {% endfor %}
     </body>
 </html>

@@ -2,12 +2,8 @@
 
 require_once 'init.php';
 
-$dir = scandir(__DIR__ . '/media');
-$galleries = [];
-foreach ($dir as $file) {
-    if ($file != '.' && $file != '..') {
-        $galleries[] = $file;
-    }
-}
+use Repositories\GalleryRepository;
 
-echo $twig->render('index.html.twig', array('galleries' => $galleries));
+$repo = new GalleryRepository(__DIR__ . '/media');
+
+echo $twig->render('index.html.twig', array('galleries' => $repo->findAll()));
