@@ -2,4 +2,12 @@
 
 require_once 'init.php';
 
-echo $twig->render('index.html.twig', array('name' => 'Fabien'));
+$dir = scandir(__DIR__ . '/media');
+$galleries = [];
+foreach ($dir as $file) {
+    if ($file != '.' && $file != '..') {
+        $galleries[] = $file;
+    }
+}
+
+echo $twig->render('index.html.twig', array('galleries' => $galleries));
