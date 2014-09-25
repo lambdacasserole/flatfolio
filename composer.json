@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "gabordemooij/redbean": "*",
-        "twig/twig": "*"
+        "gabordemooij/redbean": "3.5.1",
+        "mustangostang/spyc": "0.5.1",
+        "twig/twig": "1.16.0"
     }
 }

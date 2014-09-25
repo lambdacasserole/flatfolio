@@ -22,7 +22,7 @@
                 {% if gallery is null %}
                     <div class="bit-3 gallery-tile"></div>
                 {% else %}
-                    <div class="bit-3 gallery-tile">
+                    <div class="bit-3 gallery-tile" style="background-image:url(media/{{ gallery.directory }}/{{ gallery.cover }}">
                         <div class="gallery-tile-caption">{{ gallery.name }}</div>
                         <div class="gallery-tile-actions">&#59168; &#59146;</div>
                     </div>
