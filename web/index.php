@@ -1,13 +1,13 @@
 <?php
 // web/index.php
-require_once __DIR__.'/../vendor/autoload.php';
+require_once 'init.php';
 
 $config = Spyc::YAMLLoad(__DIR__.'/../config/config.yaml'); // Load config.
 
 $app = new Silex\Application();
 
 // Uncomment the line below while debugging your app.
-// $app['debug'] = true;
+$app['debug'] = true;
 
 // Twig initialization.
 $loader = new Twig_Loader_Filesystem(__DIR__.'/../templates');
