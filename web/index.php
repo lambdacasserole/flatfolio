@@ -32,7 +32,12 @@ $app->get('/portfolio', function () use ($twig, $config) {
 });
 
 $app->get('/blog', function () use ($twig, $config) {
-    return $twig->render('blog.html.twig', $config);
+    $repo = new \Repositories\BlogRepository();
+    $blog = $repo->open(__DIR__ . '/../content/blog');
+    $vars = array_merge($config, array(
+        'blog' => $blog
+    ));
+    return $twig->render('blog.html.twig', $vars);
 });
 
 $app->get('/contact', function () use ($twig, $config) {
