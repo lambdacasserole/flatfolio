@@ -23,6 +23,18 @@ $app->get('/', function () use ($twig, $config) {
     return $twig->render('index.html.twig', $config);
 });
 
+$app->get('/about', function () use ($twig, $config) {
+    return $twig->render('about.html.twig', $config);
+});
+
+$app->get('/portfolio', function () use ($twig, $config) {
+    return $twig->render('portfolio.html.twig', $config);
+});
+
+$app->get('/blog', function () use ($twig, $config) {
+    return $twig->render('blog.html.twig', $config);
+});
+
 $app->get('/contact', function () use ($twig, $config) {
     return $twig->render('contact.html.twig', $config);
 });
@@ -72,22 +84,6 @@ $app->get('/twitter', function () use ($twig, $config) {
 $app->get('/github', function () use ($twig, $config) {
     header('Location: ' . $config['github_url']);
     die();
-});
-
-$app->get('/project-1', function () use ($twig, $config) {
-    return $twig->render('project-1.html.twig', $config);
-});
-
-$app->get('/project-2', function () use ($twig, $config) {
-    return $twig->render('project-2.html.twig', $config);
-});
-
-$app->get('/project-3', function () use ($twig, $config) {
-    return $twig->render('project-3.html.twig', $config);
-});
-
-$app->get('/blog', function () use ($twig, $config) {
-    return $twig->render('blog.html.twig', $config);
 });
 
 $app->run();
