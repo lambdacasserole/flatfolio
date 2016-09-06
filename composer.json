@@ -1,7 +1,7 @@
 {
-    "name": "SaulJohnson/flatfolio",
+    "name": "lambdacasserole/flatfolio",
     "description": "Flat file art e-portfolio.",
-    "minimum-stability": "beta",
+    "type": "project",
     "license": "MIT",
     "authors": [
         {
@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "gabordemooij/redbean": "3.5.1",
-        "mustangostang/spyc": "0.5.1",
-        "twig/twig": "1.16.0"
+        "silex/silex": "~2.0",
+        "twig/twig": "^1.24",
+        "mustangostang/spyc": "^0.5.1"
     }
 }

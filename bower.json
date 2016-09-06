@@ -1,7 +1,7 @@
 {
-  "name": "flatfolio",
-  "version": "0.1.0",
-  "homepage": "https://github.com/SaulJohnson/flatfolio",
+  "name": "lambdacasserole/flatfolio",
+  "version": "1.0.0",
+  "homepage": "https://github.com/lambdacasserole/flatfolio",
   "authors": [
     "Saul Johnson <saul.a.johnson@gmail.com>"
   ],
@@ -9,13 +9,12 @@
   "keywords": [
     "flat",
     "file",
-    "portfolio",
-    "art"
+    "art",
+    "portfolio"
   ],
   "license": "MIT",
   "dependencies": {
-    "lemonade": "*",
-    "entypo": "*",
-    "slice": "dope/slice"
+    "bootstrap": "~3.3.1",
+    "bootswatch": "^3.3.6"
   }
 }

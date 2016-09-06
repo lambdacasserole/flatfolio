@@ -1,6 +1,6 @@
 {
   "name": "flatfolio",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Flat file art e-portfolio.",
   "main": "index.js",
   "scripts": {
@@ -8,25 +8,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SaulJohnson/flatfolio.git"
+    "url": "https://github.com/lambdacasserole/flatfolio"
   },
   "keywords": [
     "flat",
     "file",
-    "portfolio",
-    "art"
+    "art",
+    "portfolio"
   ],
   "author": "Saul Johnson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SaulJohnson/flatfolio/issues"
+    "url": "https://github.com/lambdacasserole/flatfolio/issues"
   },
-  "homepage": "https://github.com/SaulJohnson/flatfolio",
+  "homepage": "https://github.com/lambdacasserole/flatfolio",
   "devDependencies": {
-    "bower": "^1.3.11",
+    "bower": "~1.4.1",
+    "es6-promise": "^3.2.1",
     "gulp": "^3.8.8",
-    "gulp-autoprefixer": "^1.0.1",
-    "gulp-sass": "^0.7.3",
-    "readable-stream": "^1.0.32"
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-coffee": "^2.2.0",
+    "gulp-less": "^1.3.6",
+    "gulp-minify-css": "^1.2.4"
   }
 }

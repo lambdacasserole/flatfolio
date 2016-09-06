@@ -1,16 +1,42 @@
-// Imports.
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
+// Promise polyfill.
+var Promise = require('es6-promise').Promise;
 
-/**
- * Compiles the project's SASS.
- */
-gulp.task('sass', function() {
-    return gulp.src('public/css/*.scss')
-        .pipe(sass({ style: 'compressed' }))
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('public/css'))
+// Gulp itself.
+var gulp = require('gulp');
+
+// Less and CSS stuff.
+var less = require('gulp-less');
+var prefix = require('gulp-autoprefixer');
+var minifycss = require('gulp-minify-css');
+var coffee = require('gulp-coffee');
+
+// Compile all the Less.
+gulp.task('less', function () {
+    gulp.src(['./web/less/*.less'])
+        .pipe(less())
+        .pipe(prefix(
+            "last 1 version", "> 1%", "ie 8", "ie 7"
+        ))
+        .pipe(minifycss()) // Minify resulting CSS.
+        .pipe(gulp.dest('./web/css'));
 });
 
-gulp.task('default', ['sass']);
+// Compile all the CoffeeScript.
+gulp.task('coffee', function () {
+    gulp.src(['./web/coffee/*.coffee'])
+        .pipe(coffee())
+        .pipe(gulp.dest('./web/js'));
+});
+
+gulp.task('watch', function() {
+    // Compile Less.
+    gulp.watch("./web/less/*.less", function(event) {
+        gulp.run('less');
+    });
+    // Compile CoffeeScript.
+    gulp.watch("./web/coffee/*.coffee", function(event) {
+        gulp.run('coffee');
+    });
+});
+
+gulp.task('default', ['less', 'coffee']);
