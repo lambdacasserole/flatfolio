@@ -15,7 +15,7 @@ class Blog
 
     private $tagline;
 
-    private $items;
+    private $posts;
 
     /**
      * @return mixed
@@ -26,7 +26,8 @@ class Blog
     }
 
     /**
-     * @param mixed $name
+     * @param $name
+     * @return $this
      */
     public function setName($name)
     {
@@ -43,7 +44,8 @@ class Blog
     }
 
     /**
-     * @param mixed $cover
+     * @param $cover
+     * @return $this
      */
     public function setCover($cover)
     {
@@ -60,7 +62,8 @@ class Blog
     }
 
     /**
-     * @param mixed $tagline
+     * @param $tagline
+     * @return $this
      */
     public function setTagline($tagline)
     {
@@ -69,19 +72,34 @@ class Blog
     }
 
     /**
-     * @return mixed
+     * @return Post[]
      */
-    public function getItems()
+    public function getPosts()
     {
-        return $this->items;
+        return $this->posts;
     }
 
     /**
-     * @param mixed $items
+     * @param $posts
+     * @return $this
      */
-    public function setItems($items)
+    public function setPosts($posts)
     {
-        $this->items = $items;
+        $this->posts = $posts;
         return $this;
+    }
+
+    /**
+     * @param $slug
+     * @return null
+     */
+    public function getPostBySlug($slug)
+    {
+        foreach ($this->posts as $post) {
+            if ($post->getSlug() == $slug) {
+                return $post;
+            }
+        }
+        return null;
     }
 }

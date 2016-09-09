@@ -40,6 +40,15 @@ $app->get('/blog', function () use ($twig, $config) {
     return $twig->render('blog.html.twig', $vars);
 });
 
+$app->get('/blog/{slug}', function ($slug) use ($twig, $config) {
+    $repo = new \Repositories\BlogRepository();
+    $blog = $repo->open(__DIR__ . '/../content/blog');
+    $vars = array_merge($config, array(
+        'post' => $blog->getPostBySlug($slug)
+    ));
+    return $twig->render('blog-post.html.twig', $vars);
+});
+
 $app->get('/contact', function () use ($twig, $config) {
     return $twig->render('contact.html.twig', $config);
 });
