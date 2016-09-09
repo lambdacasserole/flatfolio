@@ -5,63 +5,63 @@ namespace Models;
 use DateTime;
 
 /**
- * Represents an instance of a blog post.
+ * Represents an instance of a project.
  *
  * @package Models
  */
-class Post
+class Project
 {
     /**
-     * The title of the blog post.
+     * The title of the project.
      *
      * @var string
      */
     private $title;
 
     /**
-     * The path of the image to use as the blog post cover image.
+     * The path of the image to use as the project cover image.
      *
      * @var string
      */
     private $cover;
 
     /**
-     * The collection of tags on the blog post.
+     * The collection of tags on the project.
      *
      * @var string[]
      */
     private $tags;
 
     /**
-     * The URL slug for the blog post.
+     * The URL slug for the project.
      *
      * @var string
      */
     private $slug;
 
     /**
-     * The date the blog post was created.
+     * The date the project was created.
      *
      * @var DateTime
      */
     private $date;
 
     /**
-     * The content of the blog post.
+     * The content of the project.
      *
      * @var string
      */
     private $content;
 
     /**
-     * The name of the author of the blog post.
+     * The name of the author of the project.
      *
      * @var string
      */
     private $author;
 
     /**
-     * Gets the title of the blog post.
+     * Gets the title of the project.
      *
      * @return string
      */
@@ -71,10 +71,10 @@ class Post
     }
 
     /**
-     * Sets the title of the blog post.
+     * Sets the title of the project.
      *
-     * @param string $title  the new title of the blog post
-     * @return Post
+     * @param string $title  the new title of the project
+     * @return Project
      */
     public function setTitle($title)
     {
@@ -83,7 +83,7 @@ class Post
     }
 
     /**
-     * Gets the path of the image to use as the blog post cover image.
+     * Gets the path of the image to use as the project cover image.
      *
      * @return string
      */
@@ -93,10 +93,10 @@ class Post
     }
 
     /**
-     * Sets the path of the image to use as the blog post cover image.
+     * Sets the path of the image to use as the project cover image.
      *
-     * @param string $cover the new path of the blog post cover image
-     * @return Post
+     * @param string $cover the new path of the project cover image
+     * @return Project
      */
     public function setCover($cover)
     {
@@ -105,7 +105,7 @@ class Post
     }
 
     /**
-     * Gets the collection of tags on the blog post.
+     * Gets the collection of tags on the project.
      *
      * @return mixed
      */
@@ -115,10 +115,10 @@ class Post
     }
 
     /**
-     * Sets the collection of tags on the blog post.
+     * Sets the collection of tags on the project.
      *
-     * @param string[] $tags    the new collection of tags on the blog post
-     * @return Post
+     * @param string[] $tags    the new collection of tags on the project
+     * @return Project
      */
     public function setTags($tags)
     {
@@ -127,7 +127,7 @@ class Post
     }
 
     /**
-     * Gets the URL slug for the blog post.
+     * Gets the URL slug for the project.
      *
      * @return string
      */
@@ -137,10 +137,10 @@ class Post
     }
 
     /**
-     * Sets the URL slug for the blog post.
+     * Sets the URL slug for the project.
      *
-     * @param string $slug  the new URL slug for the blog post
-     * @return Post
+     * @param string $slug  the new URL slug for the project
+     * @return Project
      */
     public function setSlug($slug)
     {
@@ -149,7 +149,7 @@ class Post
     }
 
     /**
-     * Gets the date the blog post was created.
+     * Gets the date the project was created.
      *
      * @return string
      */
@@ -159,10 +159,10 @@ class Post
     }
 
     /**
-     * Sets the date the blog post was created.
+     * Sets the date the project was created.
      *
-     * @param mixed $date   the new date to set as the blog post creation date
-     * @return Post
+     * @param mixed $date   the new date to set as the project creation date
+     * @return Project
      */
     public function setDate($date)
     {
@@ -171,7 +171,7 @@ class Post
     }
 
     /**
-     * Gets the content of the blog post.
+     * Gets the content of the project.
      *
      * @return string
      */
@@ -181,10 +181,10 @@ class Post
     }
 
     /**
-     * Sets the content of the blog post.
+     * Sets the content of the project.
      *
-     * @param string $content   the new content of the blog post
-     * @return Post
+     * @param string $content   the new content of the project
+     * @return Project
      */
     public function setContent($content)
     {
@@ -193,7 +193,7 @@ class Post
     }
 
     /**
-     * Gets the name of the author of the blog post.
+     * Gets the name of the author of the project.
      *
      * @return string
      */
@@ -203,10 +203,10 @@ class Post
     }
 
     /**
-     * Sets the name of the author of the blog post.
+     * Sets the name of the author of the project.
      *
-     * @param mixed $author the new name of the author of the blog post.
-     * @return Post
+     * @param mixed $author the new name of the author of the project.
+     * @return Project
      */
     public function setAuthor($author)
     {
