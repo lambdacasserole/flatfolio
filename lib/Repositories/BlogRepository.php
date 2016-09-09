@@ -39,14 +39,22 @@ class BlogRepository
     }
 
     /**
-     * @param $file
+     * Gets the name of the content file associated with the file with the specified name.
+     *
+     * @param string $file  the filename to derive the content file name from
      * @return string
      */
     private static function getContentFileName($file) {
-        $info = pathinfo($file);
-        return $info['filename'] . '.md';
+        return pathinfo($file, PATHINFO_FILENAME) . '.md';
     }
 
+    /**
+     * Returns true if the specified file has an associated content file present in the given array.
+     *
+     * @param string[] $files   the array of all file names
+     * @param string $file      the file to check
+     * @return bool
+     */
     private static function hasContent($files, $file) {
         foreach ($files as $item) {
             if ($item == self::getContentFileName($file)) {
@@ -57,16 +65,18 @@ class BlogRepository
     }
 
     /**
-     * @param $dir
-     * @return array
+     * Loads all blog posts from the specified directory and returns them.
+     *
+     * @param string $dir   the directory path to load from.
+     * @return Post[]
      */
     private static function loadPosts($dir) {
-        $files = scandir($dir);
         $posts = [];
+        $files = scandir($dir); // Iterate over files in directory.
         foreach ($files as $file) {
-            $info = pathinfo($file);
-            if ($info['extension'] == 'yml' && self::hasContent($files, $file)) {
-                $data = \Spyc::YAMLLoad($dir . '/' . $file);
+            if (pathinfo($file, PATHINFO_EXTENSION) == 'yml' // Must be a YAML file.
+                && self::hasContent($files, $file)) { // Must have an associated content file.
+                $data = \Spyc::YAMLLoad($dir . '/' . $file); // Load metadata into new post instance.
                 $post = new Post();
                 $post->setCover($data['cover'])
                     ->setDate(date_create_from_format('j-M-Y', $data['date']))
@@ -74,7 +84,7 @@ class BlogRepository
                     ->setTags($data['tags'])
                     ->setTitle($data['title'])
                     ->setAuthor($data['author'])
-                    ->setContent(file_get_contents($dir . '/' . self::getContentFileName($file)));
+                    ->setContent(file_get_contents($dir . '/' . self::getContentFileName($file))); // Load content file.
                 $posts[] = $post;
             }
         }
