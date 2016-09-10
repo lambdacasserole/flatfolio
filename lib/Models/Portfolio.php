@@ -140,4 +140,50 @@ class Portfolio
         }
         return null;
     }
+
+    /**
+     * Gets an array of projects by category.
+     *
+     * @param string $category  the category of projects to retrieve
+     * @return Project[]
+     */
+    public function getProjectsByCategory($category)
+    {
+        $projects = [];
+        foreach ($this->projects as $project) {
+            foreach ($project->getCategories() as $item) {
+                if ($item == $category) {
+                    $projects[] = $project;
+                }
+            }
+        }
+        return $projects;
+    }
+
+    /**
+     * Gets an array of projects from the given categories.
+     *
+     * @param string[] $categories  the categories of projects to retrieve
+     * @param Project $exclude      the project to exclude, if any
+     * @return Project[]
+     */
+    public function getProjectsByCategories($categories, $exclude = null)
+    {
+        $projects = [];
+        foreach ($categories as $category)
+        {
+            $projects = array_merge($projects, $this->getProjectsByCategory($category));
+        }
+
+        // Remove duplicates.
+        $filtered = [];
+        foreach ($projects as $project)
+        {
+            if (!in_array($project, $filtered) && $project != $exclude) {
+                $filtered[] = $project;
+            }
+        }
+
+        return $filtered;
+    }
 }

@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Project{% endblock %}
+
+{% block banner %}
+    <div class="banner-giant" style="background-image:url({{ project.cover }});">
+        <div class="banner-giant-divider-top"></div>
+        <div class="banner-giant-divider-bottom"></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ project.title }}</h2>
+            <div class="row">
+                <div class="col-md-3"><img src="{{ project.tile }}" class="portfolio-image"></div>
+                <div class="col-md-9">
+                    <h3>Overview</h3>
+                    <p>
+                        {{ project.content }}
+                    </p>
+                    <p>
+                        <b>Date: </b> {{ project.date|date("m/d/Y") }}
+                    </p>
+                    <p>
+                        <b>Categories: </b>
+                        {% for category in project.categories %}
+                            {{ category }}{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>
+                        <b>Client: </b> {{ project.client }}
+                    </p>
+                    <p>
+                        <b>Web: </b> {{ project.website }}
+                    </p>
+                    <p>
+                        <b>Author: </b> {{ project.author }}
+                    </p>
+                </div>
+            </div>
+            <h2>Related Projects</h2>
+            <ul>
+            {% for item in related %}
+                <li><a href="/portfolio/{{ item.slug }}">{{ item.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -26,11 +26,18 @@ class Project
     private $cover;
 
     /**
-     * The collection of tags on the project.
+     * The path of the image to use as the tile for the project.
+     *
+     * @var string
+     */
+    private $tile;
+
+    /**
+     * The collection of categories the project belongs to.
      *
      * @var string[]
      */
-    private $tags;
+    private $categories;
 
     /**
      * The URL slug for the project.
@@ -59,6 +66,20 @@ class Project
      * @var string
      */
     private $author;
+
+    /**
+     * The name of the client the project was undertaken for.
+     *
+     * @var string
+     */
+    private $client;
+
+    /**
+     * The website URL of the client the project was undertaken for.
+     *
+     * @var string
+     */
+    private $website;
 
     /**
      * Gets the title of the project.
@@ -105,24 +126,46 @@ class Project
     }
 
     /**
-     * Gets the collection of tags on the project.
+     * Gets the path of the image to use as the tile for the project.
      *
-     * @return mixed
+     * @return string
      */
-    public function getTags()
+    public function getTile()
     {
-        return $this->tags;
+        return $this->tile;
     }
 
     /**
-     * Sets the collection of tags on the project.
+     * Sets path of the image to use as the tile for the project.
      *
-     * @param string[] $tags    the new collection of tags on the project
+     * @param string $tile  the new path of the project tile image
      * @return Project
      */
-    public function setTags($tags)
+    public function setTile($tile)
     {
-        $this->tags = $tags;
+        $this->tile = $tile;
+        return $this;
+    }
+
+    /**
+     * Gets the collection of categories the project belongs to.
+     *
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Sets the collection of categories the project belongs to.
+     *
+     * @param string[] $categories    the new collection of categories the project belongs to
+     * @return Project
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
         return $this;
     }
 
@@ -211,6 +254,50 @@ class Project
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * Gets the name of the client the project was undertaken for.
+     *
+     * @return string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Sets the name of the client the project was undertaken for.
+     *
+     * @param string $client    the name of the client the project was undertaken for
+     * @return Project
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
+     * Gets the website URL of the client the project was undertaken for.
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Sets the website URL of the client the project was undertaken for.
+     *
+     * @param string $website   the website URL of the client the project was undertaken for
+     * @return Project
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
         return $this;
     }
 }

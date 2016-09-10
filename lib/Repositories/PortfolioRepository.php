@@ -78,12 +78,15 @@ class PortfolioRepository
                 && self::hasContent($files, $file)) { // Must have an associated content file.
                 $data = \Spyc::YAMLLoad($dir . '/' . $file); // Load metadata into new project instance.
                 $project = new Project();
-                $project->setCover($data['cover'])
-                    ->setDate(date_create_from_format('j-M-Y', $data['date']))
+                $project->setTitle($data['title'])
+                    ->setCover($data['cover'])
+                    ->setTile($data['tile'])
+                    ->setCategories($data['categories'])
                     ->setSlug($data['slug'])
-                    ->setTags($data['tags'])
-                    ->setTitle($data['title'])
+                    ->setDate(date_create_from_format('j-M-Y', $data['date']))
                     ->setAuthor($data['author'])
+                    ->setClient($data['client'])
+                    ->setWebsite($data['website'])
                     ->setContent(file_get_contents($dir . '/' . self::getContentFileName($file))); // Load content file.
                 $projects[] = $project;
             }
