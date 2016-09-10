@@ -1,5 +1,7 @@
 <?php
 
+namespace Flatfolio;
+
 /**
  * Provides static access to the request submitted from the client.
  *

@@ -1,5 +1,7 @@
 <?php
 
+namespace Flatfolio;
+
 /**
  * A singleton handle on the application security configuration file.
  *

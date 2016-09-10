@@ -1,5 +1,7 @@
 <?php
 
+namespace Flatfolio;
+
 /**
  * Handles very basic authentication for the backend.
  *

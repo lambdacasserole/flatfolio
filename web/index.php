@@ -28,7 +28,7 @@ $app->get('/about', function () use ($twig, $config) {
 });
 
 $app->get('/portfolio', function () use ($twig, $config) {
-    $repo = new \Repositories\PortfolioRepository();
+    $repo = new \Flatfolio\Repositories\PortfolioRepository();
     $portfolio = $repo->open(__DIR__ . '/../content/portfolio'); // Load portfolio.
     $vars = array_merge($config, array(
         'portfolio' => $portfolio // Pass entire portfolio into page.
@@ -37,7 +37,7 @@ $app->get('/portfolio', function () use ($twig, $config) {
 });
 
 $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
-    $repo = new \Repositories\PortfolioRepository();
+    $repo = new \Flatfolio\Repositories\PortfolioRepository();
     $portfolio = $repo->open(__DIR__ . '/../content/portfolio'); // Load portfolio.
     $project = $portfolio->getProjectBySlug($slug); // Load relevant project.
     $related = $portfolio->getProjectsByCategories($project->getCategories(), $project); // Load related projects;
@@ -49,7 +49,7 @@ $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
 });
 
 $app->get('/blog', function () use ($twig, $config) {
-    $repo = new \Repositories\BlogRepository();
+    $repo = new \Flatfolio\Repositories\BlogRepository();
     $blog = $repo->open(__DIR__ . '/../content/blog'); // Load blog.
     $vars = array_merge($config, array(
         'blog' => $blog // Pass entire blog into page.
@@ -58,7 +58,7 @@ $app->get('/blog', function () use ($twig, $config) {
 });
 
 $app->get('/blog/{slug}', function ($slug) use ($twig, $config) {
-    $repo = new \Repositories\BlogRepository();
+    $repo = new \Flatfolio\Repositories\BlogRepository();
     $blog = $repo->open(__DIR__ . '/../content/blog'); // Load blog.
     $vars = array_merge($config, array(
         'post' => $blog->getPostBySlug($slug) // Pass relevant post in to page.

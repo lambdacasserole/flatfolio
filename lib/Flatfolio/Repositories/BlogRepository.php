@@ -1,16 +1,16 @@
 <?php
 
-namespace Repositories;
+namespace Flatfolio\Repositories;
 
-use Models\Portfolio;
-use Models\Project;
+use Flatfolio\Models\Blog;
+use Flatfolio\Models\Post;
 
 /**
- * A repository for accessing {@link Portfolio} instances.
+ * A repository for accessing {@link Blog} instances.
  *
  * @package Repositories
  */
-class PortfolioRepository
+class BlogRepository
 {
     /**
      * Returns true if the directory at the given path contains a metadata file.
@@ -35,7 +35,7 @@ class PortfolioRepository
      * @return array
      */
     private static function loadMetadata($dir) {
-        return \Spyc::YAMLLoad($dir . '/_metadata.yaml');
+       return \Spyc::YAMLLoad($dir . '/_metadata.yaml');
     }
 
     /**
@@ -65,51 +65,48 @@ class PortfolioRepository
     }
 
     /**
-     * Loads all projects from the specified directory and returns them.
+     * Loads all blog posts from the specified directory and returns them.
      *
      * @param string $dir   the directory path to load from.
-     * @return Project[]
+     * @return Post[]
      */
-    private static function loadProjects($dir) {
-        $projects = [];
+    private static function loadPosts($dir) {
+        $posts = [];
         $files = scandir($dir); // Iterate over files in directory.
         foreach ($files as $file) {
             if (pathinfo($file, PATHINFO_EXTENSION) == 'yml' // Must be a YAML file.
                 && self::hasContent($files, $file)) { // Must have an associated content file.
-                $data = \Spyc::YAMLLoad($dir . '/' . $file); // Load metadata into new project instance.
-                $project = new Project();
-                $project->setTitle($data['title'])
-                    ->setCover($data['cover'])
-                    ->setTile($data['tile'])
-                    ->setCategories($data['categories'])
-                    ->setSlug($data['slug'])
+                $data = \Spyc::YAMLLoad($dir . '/' . $file); // Load metadata into new post instance.
+                $post = new Post();
+                $post->setCover($data['cover'])
                     ->setDate(date_create_from_format('j-M-Y', $data['date']))
+                    ->setSlug($data['slug'])
+                    ->setTags($data['tags'])
+                    ->setTitle($data['title'])
                     ->setAuthor($data['author'])
-                    ->setClient($data['client'])
-                    ->setWebsite($data['website'])
                     ->setContent(file_get_contents($dir . '/' . self::getContentFileName($file))); // Load content file.
-                $projects[] = $project;
+                $posts[] = $post;
             }
         }
-        return $projects;
+        return $posts;
     }
 
     /**
-     * Returns the directory at the given path as a {@link Portfolio} instance.
+     * Returns the directory at the given path as a {@link Blog} instance.
      *
      * @param string $dir   the directory path to load
-     * @return Portfolio|null
+     * @return Blog|null
      */
     public static function open($dir) {
         if (self::hasMetadata($dir)) { // If directory contains metadata file.
             $metadata = self::loadMetadata($dir); // Load metadata.
-            $portfolio = new Portfolio(); // Initialize new portfolio instance.
-            $portfolio->setName($metadata['name'])
+            $blog = new Blog(); // Initialize new blog instance.
+            $blog->setName($metadata['name'])
                 ->setSlogan($metadata['tagline'])
                 ->setCover($metadata['cover'])
-                ->setProjects(self::loadProjects($dir)); // Load projects too.
-            return $portfolio;
+                ->setPosts(self::loadPosts($dir)); // Load posts too.
+            return $blog;
         }
-        return null; // No metadata, loading portfolio failed.
+        return null; // No metadata, loading blog failed.
     }
 }

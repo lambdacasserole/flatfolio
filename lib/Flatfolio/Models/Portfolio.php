@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Flatfolio\Models;
 
 /**
  * Represents a portfolio, a collection of artwork or projects.

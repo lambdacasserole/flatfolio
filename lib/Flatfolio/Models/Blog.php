@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Flatfolio\Models;
 
 /**
  * Represents an instance of a blog.
