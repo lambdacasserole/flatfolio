@@ -16,3 +16,13 @@ function removeDotFolders($arr)
     }
     return $arr;
 }
+
+/**
+ * Gets the security configuration class for the application.
+ *
+ * @return Security
+ */
+function getSecurity()
+{
+    return Security::get();
+}
