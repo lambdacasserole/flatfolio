@@ -1,6 +1,11 @@
 <?php
-// web/index.php
+
 require_once 'init.php';
+
+use Flatfolio\Auth;
+use Flatfolio\Repositories\BlogRepository;
+use Flatfolio\Repositories\PortfolioRepository;
+use Flatfolio\Request;
 
 $config = Spyc::YAMLLoad(__DIR__ . '/../config/config.yml'); // Load config.
 
@@ -28,7 +33,7 @@ $app->get('/about', function () use ($twig, $config) {
 });
 
 $app->get('/portfolio', function () use ($twig, $config) {
-    $repo = new \Flatfolio\Repositories\PortfolioRepository();
+    $repo = new PortfolioRepository();
     $portfolio = $repo->open(__DIR__ . '/../content/portfolio'); // Load portfolio.
     $vars = array_merge($config, array(
         'portfolio' => $portfolio // Pass entire portfolio into page.
@@ -37,7 +42,7 @@ $app->get('/portfolio', function () use ($twig, $config) {
 });
 
 $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
-    $repo = new \Flatfolio\Repositories\PortfolioRepository();
+    $repo = new PortfolioRepository();
     $portfolio = $repo->open(__DIR__ . '/../content/portfolio'); // Load portfolio.
     $project = $portfolio->getProjectBySlug($slug); // Load relevant project.
     $related = $portfolio->getProjectsByCategories($project->getCategories(), $project); // Load related projects;
@@ -49,7 +54,7 @@ $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
 });
 
 $app->get('/blog', function () use ($twig, $config) {
-    $repo = new \Flatfolio\Repositories\BlogRepository();
+    $repo = new BlogRepository();
     $blog = $repo->open(__DIR__ . '/../content/blog'); // Load blog.
     $vars = array_merge($config, array(
         'blog' => $blog // Pass entire blog into page.
@@ -58,7 +63,7 @@ $app->get('/blog', function () use ($twig, $config) {
 });
 
 $app->get('/blog/{slug}', function ($slug) use ($twig, $config) {
-    $repo = new \Flatfolio\Repositories\BlogRepository();
+    $repo = new BlogRepository();
     $blog = $repo->open(__DIR__ . '/../content/blog'); // Load blog.
     $vars = array_merge($config, array(
         'post' => $blog->getPostBySlug($slug) // Pass relevant post in to page.
@@ -107,7 +112,7 @@ $app->get('/login', function () use ($twig, $config) {
 });
 
 $app->get('/admin', function () use ($twig, $config) {
-    if (!\Flatfolio\Auth::isAuthenticated()) {
+    if (!Auth::isAuthenticated()) {
         die();
     }
     return $twig->render('admin-overview.html.twig', $config);
@@ -115,16 +120,16 @@ $app->get('/admin', function () use ($twig, $config) {
 
 $app->post('/login', function () use ($twig, $config) {
     // If we're already logged in, go to deploy.
-    if (\Flatfolio\Auth::isAuthenticated())
+    if (Auth::isAuthenticated())
     {
         header('Location: /admin');
         die();
     }
     // If the login form is submitted.
     $status = 0;
-    if (\Flatfolio\Request::isLoginFormSubmitted())
+    if (Request::isLoginFormSubmitted())
     {
-        if (\Flatfolio\Auth::authenticate(\Flatfolio\Request::getLoginEmail(), \Flatfolio\Request::getLoginPassword()))
+        if (Auth::authenticate(Request::getLoginEmail(), Request::getLoginPassword()))
         {
             header('Location: /admin');
             die();
