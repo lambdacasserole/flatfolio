@@ -8,7 +8,9 @@ use Flatfolio\Models\Post;
 /**
  * A repository for accessing {@link Blog} instances.
  *
- * @package Repositories
+ * @package Flatfolio\Repositories
+ * @author Saul Johnson
+ * @since 11/09/2016
  */
 class BlogRepository
 {

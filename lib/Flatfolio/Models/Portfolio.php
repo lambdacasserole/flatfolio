@@ -5,7 +5,9 @@ namespace Flatfolio\Models;
 /**
  * Represents a portfolio, a collection of artwork or projects.
  *
- * @package Models
+ * @package Flatfolio\Models
+ * @author Saul Johnson
+ * @since 11/09/2016
  */
 class Portfolio
 {

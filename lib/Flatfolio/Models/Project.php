@@ -7,7 +7,9 @@ use DateTime;
 /**
  * Represents an instance of a project.
  *
- * @package Models
+ * @package Flatfolio\Models
+ * @author Saul Johnson
+ * @since 11/09/2016
  */
 class Project
 {

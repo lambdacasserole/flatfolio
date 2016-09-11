@@ -7,8 +7,9 @@ use Spyc;
 /**
  * A singleton handle on the application security configuration file.
  *
+ * @package Flatfolio
  * @author Saul Johnson
- * @since 09/07/2015
+ * @since 11/09/2016
  */
 class Security
 {

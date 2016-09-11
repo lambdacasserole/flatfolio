@@ -5,8 +5,9 @@ namespace Flatfolio;
 /**
  * Provides static access to the request submitted from the client.
  *
+ * @package Flatfolio
  * @author Saul Johnson
- * @since 14/07/2015
+ * @since 11/09/2016
  */
 class Request
 {

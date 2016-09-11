@@ -5,7 +5,9 @@ namespace Flatfolio\Models;
 /**
  * Represents an instance of a blog.
  *
- * @package Models
+ * @package Flatfolio\Models
+ * @author Saul Johnson
+ * @since 11/09/2016
  */
 class Blog
 {

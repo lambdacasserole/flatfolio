@@ -5,8 +5,9 @@ namespace Flatfolio;
 /**
  * Handles very basic authentication for the backend.
  *
+ * @package Flatfolio
  * @author Saul Johnson
- * @since 09/07/2015
+ * @since 11/09/2016
  */
 class Auth
 {
