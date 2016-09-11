@@ -1,5 +1,5 @@
 # Don't commit this file to source control, it contains your secret settings.
 
 admin_email: me@example.com
-admin_password_hash: 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-secret_key: DgBn8Trt
+admin_password_hash: 2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea
+secret_key: V8c6pxjBeoCd

@@ -1,5 +1,7 @@
 <?php
 
+use Flatfolio\Security;
+
 /**
  * Removes the dot folder names '.' and '..' from an array.
  *

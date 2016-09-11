@@ -102,6 +102,44 @@ $app->post('/contact', function () use ($twig, $config) {
     return $twig->render('contact.html.twig', $vars);
 });
 
+$app->get('/login', function () use ($twig, $config) {
+    return $twig->render('login.html.twig', $config);
+});
+
+$app->get('/admin', function () use ($twig, $config) {
+    if (!\Flatfolio\Auth::isAuthenticated()) {
+        die();
+    }
+    return $twig->render('admin-overview.html.twig', $config);
+});
+
+$app->post('/login', function () use ($twig, $config) {
+    // If we're already logged in, go to deploy.
+    if (\Flatfolio\Auth::isAuthenticated())
+    {
+        header('Location: /admin');
+        die();
+    }
+    // If the login form is submitted.
+    $status = 0;
+    if (\Flatfolio\Request::isLoginFormSubmitted())
+    {
+        if (\Flatfolio\Auth::authenticate(\Flatfolio\Request::getLoginEmail(), \Flatfolio\Request::getLoginPassword()))
+        {
+            header('Location: /admin');
+            die();
+        }
+        else
+        {
+            $status = 1; // Bad credentials.
+        }
+    }
+    $vars = array_merge($config, array(
+        'status' => $status,
+    ));
+    return $twig->render('login.html.twig', $vars);
+});
+
 $app->get('/linkedin', function () use ($twig, $config) {
     header('Location: ' . $config['linkedin_url']);
     die();

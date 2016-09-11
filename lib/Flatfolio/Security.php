@@ -2,6 +2,8 @@
 
 namespace Flatfolio;
 
+use Spyc;
+
 /**
  * A singleton handle on the application security configuration file.
  *
@@ -62,7 +64,7 @@ class Security
     {
         if (self::$instance == null)
         {
-            self::$instance = new Security(__DIR__ . '/../security.yml'); // Load configuration.
+            self::$instance = new Security(__DIR__ . '/../../config/security.yml'); // Load configuration.
         }
         return self::$instance;
     }
