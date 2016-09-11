@@ -2,7 +2,7 @@
 // web/index.php
 require_once 'init.php';
 
-$config = Spyc::YAMLLoad(__DIR__.'/../config/config.yaml'); // Load config.
+$config = Spyc::YAMLLoad(__DIR__ . '/../config/config.yml'); // Load config.
 
 $app = new Silex\Application();
 

@@ -13,7 +13,7 @@ You'll also need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.c
 ## Configuration
 A couple of files need changing to get the site working for you.
 
-1. Copy `config.yaml.dist` and rename it to `config.yaml`. Fill in the fields according to their descriptions and save.
+1. Copy `config.yml.dist` and rename it to `config.yml`. Fill in the fields according to their descriptions and save.
 2. Locate `blog.coffee` and fill in the `blogId` and `apiKey` fields to get your blog working.
 
 ## Building
