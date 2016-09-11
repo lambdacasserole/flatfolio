@@ -7,7 +7,7 @@ use Flatfolio\Repositories\BlogRepository;
 use Flatfolio\Repositories\PortfolioRepository;
 use Flatfolio\Request;
 
-$config = Spyc::YAMLLoad(__DIR__ . '/../config/config.yml'); // Load config.
+$config = Spyc::YAMLLoad(CONFIG_FILE_PATH); // Load config.
 
 $app = new Silex\Application();
 
@@ -15,9 +15,9 @@ $app = new Silex\Application();
 $app['debug'] = true;
 
 // Twig initialization.
-$loader = new Twig_Loader_Filesystem(__DIR__.'/../templates');
+$loader = new Twig_Loader_Filesystem(SITE_TEMPLATE_DIR);
 $twig = new Twig_Environment($loader, array(
-    'cache' => TEMPLATE_CACHING_ENABLED ? __DIR__ . '/../cache' : false,
+    'cache' => TEMPLATE_CACHING_ENABLED ? SITE_CACHE_DIR : false,
 ));
 
 /*
