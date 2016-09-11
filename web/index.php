@@ -7,7 +7,8 @@ use Flatfolio\Repositories\BlogRepository;
 use Flatfolio\Repositories\PortfolioRepository;
 use Flatfolio\Request;
 
-$config = Spyc::YAMLLoad(CONFIG_FILE_PATH); // Load config.
+// Load config.
+$config = Spyc::YAMLLoad(CONFIG_FILE_PATH);
 
 $app = new Silex\Application();
 
@@ -33,19 +34,29 @@ $app->get('/about', function () use ($twig, $config) {
 });
 
 $app->get('/portfolio', function () use ($twig, $config) {
+    // Load portfolio from repository.
     $repo = new PortfolioRepository();
-    $portfolio = $repo->open(__DIR__ . '/../content/portfolio'); // Load portfolio.
+    $portfolio = $repo->open(__DIR__ . '/../content/portfolio');
+
+    // Pass entire portfolio into page.
     $vars = array_merge($config, array(
-        'portfolio' => $portfolio // Pass entire portfolio into page.
+        'portfolio' => $portfolio
     ));
     return $twig->render('portfolio.html.twig', $vars);
 });
 
 $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
+    // Load portfolio from repository.
     $repo = new PortfolioRepository();
-    $portfolio = $repo->open(__DIR__ . '/../content/portfolio'); // Load portfolio.
-    $project = $portfolio->getProjectBySlug($slug); // Load relevant project.
-    $related = $portfolio->getProjectsByCategories($project->getCategories(), $project); // Load related projects;
+    $portfolio = $repo->open(__DIR__ . '/../content/portfolio');
+
+    // Find relevant project by its slug.
+    $project = $portfolio->getProjectBySlug($slug);
+
+    // Load related projects based on category.
+    $related = $portfolio->getProjectsByCategories($project->getCategories(), $project);
+
+    // Pass relevant project and related projects into page.
     $vars = array_merge($config, array(
         'project' => $project,
         'related' => $related
@@ -54,8 +65,11 @@ $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
 });
 
 $app->get('/blog', function () use ($twig, $config) {
+    // Load blog from repository.
     $repo = new BlogRepository();
-    $blog = $repo->open(__DIR__ . '/../content/blog'); // Load blog.
+    $blog = $repo->open(__DIR__ . '/../content/blog');
+
+    // Pass entire portfolio into page.
     $vars = array_merge($config, array(
         'blog' => $blog // Pass entire blog into page.
     ));
@@ -63,10 +77,13 @@ $app->get('/blog', function () use ($twig, $config) {
 });
 
 $app->get('/blog/{slug}', function ($slug) use ($twig, $config) {
+    // Load blog from repository.
     $repo = new BlogRepository();
-    $blog = $repo->open(__DIR__ . '/../content/blog'); // Load blog.
+    $blog = $repo->open(__DIR__ . '/../content/blog');
+
+    // Pass relevant post in to page.
     $vars = array_merge($config, array(
-        'post' => $blog->getPostBySlug($slug) // Pass relevant post in to page.
+        'post' => $blog->getPostBySlug($slug)
     ));
     return $twig->render('blog-post.html.twig', $vars);
 });
@@ -112,33 +129,32 @@ $app->get('/login', function () use ($twig, $config) {
 });
 
 $app->get('/admin', function () use ($twig, $config) {
+    // Redirect to login page if not authenticated.
     if (!Auth::isAuthenticated()) {
-        die();
+        redirectToLoginPage();
     }
+
     return $twig->render('admin-overview.html.twig', $config);
 });
 
 $app->post('/login', function () use ($twig, $config) {
-    // If we're already logged in, go to deploy.
-    if (Auth::isAuthenticated())
-    {
-        header('Location: /admin');
-        die();
+    // If we're already logged in, go to admin page.
+    if (Auth::isAuthenticated()) {
+        redirectToAdminPage();
     }
+
     // If the login form is submitted.
     $status = 0;
-    if (Request::isLoginFormSubmitted())
-    {
-        if (Auth::authenticate(Request::getLoginEmail(), Request::getLoginPassword()))
-        {
-            header('Location: /admin');
-            die();
+    if (Request::isLoginFormSubmitted()) {
+        if (Auth::authenticate(Request::getLoginEmail(), Request::getLoginPassword())) {
+            redirectToAdminPage(); // Login success.
         }
-        else
-        {
+        else {
             $status = 1; // Bad credentials.
         }
     }
+
+    // Pass status in to login page.
     $vars = array_merge($config, array(
         'status' => $status,
     ));

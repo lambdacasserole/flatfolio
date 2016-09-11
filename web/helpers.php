@@ -5,8 +5,8 @@ use Flatfolio\Security;
 /**
  * Removes the dot folder names '.' and '..' from an array.
  *
- * @param array $arr    The array to remove elements from.
- * @return array
+ * @param string[] $arr the array to remove elements from
+ * @return string[]
  */
 function removeDotFolders($arr)
 {
@@ -27,4 +27,31 @@ function removeDotFolders($arr)
 function getSecurity()
 {
     return Security::get();
+}
+
+/**
+ * Redirects the user to a URL.
+ *
+ * @param string $url   the URL to redirect the user to
+ */
+function redirect($url)
+{
+    header("Location: $url");
+    die();
+}
+
+/**
+ * Redirects the user to the login page.
+ */
+function redirectToLoginPage()
+{
+    redirect('/login');
+}
+
+/**
+ * Redirects the user to the admin page.
+ */
+function redirectToAdminPage()
+{
+    redirect('/admin');
 }
