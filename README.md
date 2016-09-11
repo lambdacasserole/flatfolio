@@ -1,9 +1,9 @@
-# Silex Base Template
-Basic Silex project for a simple website.
+# Flatfolio
+Flat file art portfolio website framework based on [my Silex base project](https://github.com/lambdacasserole/silex-base).
 
-I'm presenting here a clean (-ish) starting point for a website written in PHP on Silex. This is a direct port of [my Django base project](https://github.com/lambdacasserole/django-base/).
+I'm presenting here a clean (-ish) starting point for a website written in PHP on Silex with a basic flat file blogging and portfolio system included.
 
-![GitHub Logo](https://raw.githubusercontent.com/lambdacasserole/silex-base/master/screenshot_small.png)
+![Screenshot](screenshot_small.png)
 
 ## Prerequisites
 You'll need to have a web server installed and configured with PHP for this to work. I really recommend [XAMPP](https://www.apachefriends.org/), especially for Windows users. Once you've done that you can proceed.
