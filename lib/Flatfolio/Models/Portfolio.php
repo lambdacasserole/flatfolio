@@ -188,4 +188,15 @@ class Portfolio
 
         return $filtered;
     }
+
+    /**
+     * Gets projects related to the project provided.
+     *
+     * @param Project $project  the project to get related projects for
+     * @return Project[]
+     */
+    public function getRelatedProjects($project)
+    {
+        return $this->getProjectsByCategories($project->getCategories(), $project);
+    }
 }

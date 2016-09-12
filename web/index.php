@@ -34,31 +34,21 @@ $app->get('/about', function () use ($twig, $config) {
 });
 
 $app->get('/portfolio', function () use ($twig, $config) {
-    // Load portfolio from repository.
-    $repo = new PortfolioRepository();
-    $portfolio = $repo->open(SITE_PORTFOLIO_DIR);
-
-    // Pass entire portfolio into page.
     $vars = array_merge($config, array(
-        'portfolio' => $portfolio
+        'portfolio' => getPortfolio() // Pass entire portfolio into page.
     ));
     return $twig->render('portfolio.html.twig', $vars);
 });
 
 $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
-    // Load portfolio from repository.
-    $repo = new PortfolioRepository();
-    $portfolio = $repo->open(SITE_PORTFOLIO_DIR);
-
-    // Find relevant project by its slug.
+    // Load portfolio, specified project and related projects.
+    $portfolio = getPortfolio();
     $project = $portfolio->getProjectBySlug($slug);
-
-    // Load related projects based on category.
     $related = $portfolio->getProjectsByCategories($project->getCategories(), $project);
 
     // Pass relevant project and related projects into page.
     $vars = array_merge($config, array(
-        'project' => $project,
+        'project' => $portfolio->getProjectBySlug($slug);,
         'related' => $related
     ));
     return $twig->render('portfolio-project.html.twig', $vars);

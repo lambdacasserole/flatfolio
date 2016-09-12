@@ -1,5 +1,8 @@
 <?php
 
+use Flatfolio\Models\Blog;
+use Flatfolio\Models\Portfolio;
+use Flatfolio\Repositories\BlogRepository;
 use Flatfolio\Security;
 
 /**
@@ -54,4 +57,26 @@ function redirectToLoginPage()
 function redirectToAdminPage()
 {
     redirect('/admin');
+}
+
+/**
+ * Gets the site's portfolio.
+ *
+ * @return Portfolio|null
+ */
+function getPortfolio()
+{
+    $repo = new PortfolioRepository();
+    return $repo->open(SITE_PORTFOLIO_DIR);
+}
+
+/**
+ * Gets the site's blog.
+ *
+ * @return Blog|null
+ */
+function getBlog()
+{
+    $repo = new BlogRepository();
+    return $repo->open(SITE_BLOG_DIR);
 }
