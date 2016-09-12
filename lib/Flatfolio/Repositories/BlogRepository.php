@@ -23,7 +23,7 @@ class BlogRepository
     private static function hasMetadata($dir) {
         $contents = scandir($dir);
         foreach ($contents as $item) {
-            if ($item == '_metadata.yaml') {
+            if ($item == '_metadata.yml') {
                 return true;
             }
         }
@@ -37,7 +37,7 @@ class BlogRepository
      * @return array
      */
     private static function loadMetadata($dir) {
-       return \Spyc::YAMLLoad($dir . '/_metadata.yaml');
+       return \Spyc::YAMLLoad($dir . '/_metadata.yml');
     }
 
     /**
