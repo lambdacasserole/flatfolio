@@ -12,6 +12,12 @@
     "require": {
         "silex/silex": "~2.0",
         "twig/twig": "^1.24",
-        "mustangostang/spyc": "^0.5.1"
+        "mustangostang/spyc": "^0.5.1",
+        "lambdacasserole/minim": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flatfolio\\": "src/"
+        }
     }
 }

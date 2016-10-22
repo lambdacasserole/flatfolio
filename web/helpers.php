@@ -3,7 +3,7 @@
 use Flatfolio\Models\Blog;
 use Flatfolio\Models\Portfolio;
 use Flatfolio\Repositories\BlogRepository;
-use Flatfolio\Security;
+use Flatfolio\Repositories\PortfolioRepository;
 
 /**
  * Removes the dot folder names '.' and '..' from an array.

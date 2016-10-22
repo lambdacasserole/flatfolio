@@ -2,10 +2,7 @@
 
 require_once 'init.php';
 
-use Flatfolio\Auth;
 use Flatfolio\Repositories\BlogRepository;
-use Flatfolio\Repositories\PortfolioRepository;
-use Flatfolio\Request;
 
 // Load config.
 $config = Spyc::YAMLLoad(CONFIG_FILE_PATH);
@@ -48,7 +45,7 @@ $app->get('/portfolio/{slug}', function ($slug) use ($twig, $config) {
 
     // Pass relevant project and related projects into page.
     $vars = array_merge($config, array(
-        'project' => $portfolio->getProjectBySlug($slug);,
+        'project' => $portfolio->getProjectBySlug($slug),
         'related' => $related
     ));
     return $twig->render('portfolio-project.html.twig', $vars);
